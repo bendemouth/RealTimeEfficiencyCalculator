@@ -1,0 +1,282 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:EfficiencyCalculator.ViewModels"
+             x:Class="EfficiencyCalculator.MainPage">
+    <ContentPage.Resources>
+        <Color x:Key="ButtonDisabledColorKey">#a7a9ac</Color>
+        <Color x:Key="ButtonEnabledColorKey">#cf202e</Color>
+        <Color x:Key="TextDisabledColorKey">#000000</Color>
+        <Color x:Key="TextEnabledColorKey">White</Color>
+
+        <Style x:Key="StatLabel" TargetType="Label">
+            <Setter Property="FontSize" Value="18" />
+            <Setter Property="Margin" Value="10" />
+        </Style>
+    </ContentPage.Resources>
+
+    <ContentPage.BindingContext>
+        <viewModels:StatsViewModel />
+    </ContentPage.BindingContext>
+
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="30,0"
+            Spacing="25">
+            <Image
+                Source="ucm_mule.png"
+                HeightRequest="185"
+                Aspect="AspectFit"
+                SemanticProperties.Description="Central Missouri Mule Logo" />
+
+            <Label
+                Text="Basketball Efficiency Calculator"
+                Style="{StaticResource Headline}"
+                TextColor="{StaticResource ButtonEnabledColorKey}"
+                SemanticProperties.HeadingLevel="Level1" />
+
+            <Label
+                Text="Enter Plays Below to Calculate Team Efficiency"
+                Style="{StaticResource SubHeadline}"
+                TextColor="{StaticResource ButtonEnabledColorKey}"
+                SemanticProperties.HeadingLevel="Level2" />
+
+            <HorizontalStackLayout  HorizontalOptions="Center">
+                
+                <VerticalStackLayout Margin="20" HorizontalOptions="Start" WidthRequest="300">
+
+                    <Button x:Name="TmFgTwoMadeBtn"
+                            Text="Team Made Two-Point Field Goal"
+                            Margin="10"
+                            CornerRadius="10"
+                            Clicked="OnStatButtonClicked"/>
+
+                    <Button x:Name="TmFgTwoMissBtn"
+                            Text="Team Missed Two-Point Field Goal"
+                            Margin="10"
+                            CornerRadius="10"
+                            Clicked="OnStatButtonClicked"/>
+
+                    <Button x:Name="TmFgThreeMadeBtn"
+                            Text="Team Made Three-Point Field Goal"
+                            Margin="10"
+                            CornerRadius="10"
+                            Clicked="OnStatButtonClicked"/>
+
+                    <Button x:Name="TmFgThreeMissBtn"
+                            Text="Team Missed Three-Point Field Goal"
+                            Margin="10"
+                            CornerRadius="10"
+                            Clicked="OnStatButtonClicked"/>
+
+                    <Button x:Name="TmOrbBtn"
+                            Text="Team Offensive Rebound"
+                            Margin="10"
+                            CornerRadius="10"
+                            Clicked="OnStatButtonClicked"/>
+
+                    <Button x:Name="TmDrbBtn"
+                            Text="Team Defensive Rebound"
+                            Margin="10" 
+                            CornerRadius="10"
+                            Clicked="OnStatButtonClicked"/>
+
+                    <Button x:Name="TmFtMadeBtn"
+                            Text="Team Made Free Throw"
+                            Margin="10" 
+                            CornerRadius="10"
+                            Clicked="OnStatButtonClicked"/>
+
+                    <Button x:Name="TmFtMissBtn"
+                            Text="Team Missed Free Throw Attempt"
+                            Margin="10" 
+                            CornerRadius="10"
+                            Clicked="OnStatButtonClicked"/>
+
+                    <Button x:Name="TmTovBtn"
+                            Text="Team Turnover"
+                            Margin="10"
+                            CornerRadius="10"
+                            Clicked="OnStatButtonClicked"/>
+
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Margin="20" HorizontalOptions="End" WidthRequest="300">
+                    <Button x:Name="OppFgTwoMadeBtn"
+                            Text="Opponent Made Two-Point Field Goal"
+                            Margin="10" 
+                            CornerRadius="10"
+                            Clicked="OnStatButtonClicked"/>
+
+                    <Button x:Name="OppFgTwoMissBtn"
+                            Text="Opponent Missed Two-Point Field Goal"
+                            Margin="10"
+                            CornerRadius="10"
+                            Clicked="OnStatButtonClicked"/>
+
+                    <Button x:Name="OppFgThreeMadeBtn"
+                            Text="Opponent Made Three-Point Field Goal"
+                            Margin="10"
+                            CornerRadius="10"
+                            Clicked="OnStatButtonClicked"/>
+
+                    <Button x:Name="OppFgThreeMissBtn"
+                            Text="Opponent Missed Three-Point Field Goal"
+                            Margin="10"
+                            CornerRadius="10"
+                            Clicked="OnStatButtonClicked"/>
+
+                    <Button x:Name="OppOrbBtn"
+                            Text="Opponent Offensive Rebound"
+                            Margin="10"
+                            CornerRadius="10"
+                            Clicked="OnStatButtonClicked"/>
+
+                    <Button x:Name="OppDrbBtn"
+                            Text="Opponent Defensive Rebound"
+                            Margin="10" 
+                            CornerRadius="10"
+                            Clicked="OnStatButtonClicked"/>
+
+                    <Button x:Name="OppFtMadeBtn"
+                            Text="Opponent Made Free Throw"
+                            Margin="10"
+                            CornerRadius="10"
+                            Clicked="OnStatButtonClicked"/>
+
+                    <Button x:Name="OppFtMissBtn"
+                            Text="Opponent Missed Free Throw Attempt"
+                            Margin="10"  
+                            CornerRadius="10"
+                            Clicked="OnStatButtonClicked"/>
+
+                    <Button x:Name="OppTovBtn"
+                            Text="Opponent Turnover"
+                            Margin="10" 
+                            CornerRadius="10"
+                            Clicked="OnStatButtonClicked"/>
+ 
+                </VerticalStackLayout>
+
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout Margin="20"
+                                   HorizontalOptions="Center">
+                
+                <VerticalStackLayout Margin="10"
+                                     HorizontalOptions="StartAndExpand"
+                                     WidthRequest="150">
+                    
+                    <Label x:Name="TmPtsLabel"
+                           Text="Team Points"
+                           Margin="10" />
+
+                    <Entry x:Name="TmPtsEntry"
+                           Margin="10"
+                           Text="{Binding TmPts, Mode=TwoWay}"/>
+                    
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Margin="10"
+                                     HorizontalOptions="EndAndExpand"
+                                     WidthRequest="150">
+                    
+                    <Label x:Name="OppPtsLabel"
+                           Text="Opponent Points"
+                           Margin="10" />
+
+                    <Entry x:Name="OppPtsEntry"
+                           Margin="10"
+                           Text="{Binding OppPts, Mode=TwoWay}"/>
+                    
+                </VerticalStackLayout>
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout Margin="20" HorizontalOptions="Center">
+                <Button x:Name="AddPlay"
+                    Text="Add Play"
+                    SemanticProperties.Hint="Add Play to Play List"
+                    Clicked="OnSubmitPlayBtnClicked"
+                    HorizontalOptions="Center"
+                    Margin="10"
+                    WidthRequest="175"/>
+
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout Margin="20" HorizontalOptions="Center">
+                <VerticalStackLayout Margin="10" HorizontalOptions="Start">
+                    <Label x:Name="TmFgShootingLabel"
+                           Text="{Binding TeamFieldGoalShooting}"
+                           Style="{StaticResource StatLabel}" />
+
+                    <Label x:Name="TmThreeShootingLabel"
+                           Text="{Binding TeamThreePointShooting}"
+                           Style="{StaticResource StatLabel}" />
+
+                    <Label x:Name="TmEfgShootingLabel"
+                           Text="{Binding TeamEfg}"
+                           Style="{StaticResource StatLabel}" />
+
+                    <Label x:Name="TmPossLabel"
+                           Text="{Binding TeamPoss}"
+                           Style="{StaticResource StatLabel}" />
+
+                    <Label x:Name="TmOffEffLabel"
+                           Text="{Binding TeamOffEfficiency}"
+                           Style="{StaticResource StatLabel}" />
+
+                    <Label x:Name="TmDefEffLabel"
+                           Text="{Binding TeamDefEfficiency}"
+                           Style="{StaticResource StatLabel}" />
+
+                    <Label x:Name="TmOrbPctLabel"
+                           Text="{Binding TeamOrbPct}"
+                           Style="{StaticResource StatLabel}" />
+
+                    <Label x:Name="TmDrbPctLabel"
+                           Text="{Binding TeamDrbPct}"
+                           Style="{StaticResource StatLabel}" />
+
+
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Margin="10" HorizontalOptions="End">
+                    <Label x:Name="OppFgShootingLabel"
+                           Text="{Binding OppFieldGoalShooting}"
+                           Style="{StaticResource StatLabel}" />
+
+                    <Label x:Name="OppThreeShootingLabel"
+                           Text="{Binding OppThreePointShooting}"
+                           Style="{StaticResource StatLabel}" />
+
+                    <Label x:Name="OppEfgShootingLabel"
+                           Text="{Binding OppEfg}"
+                           Style="{StaticResource StatLabel}" />
+
+                    <Label x:Name="OppPossLabel"
+                           Text="{Binding OppPoss}"
+                           Style="{StaticResource StatLabel}"/>
+
+                    <Label x:Name="OppOffEffLabel"
+                           Text="{Binding OppOffEfficiency}"
+                           Style="{StaticResource StatLabel}" />            
+
+                    <Label x:Name="OppDefEffLabel"
+                           Text="{Binding OppDefEfficiency}"
+                           Style="{StaticResource StatLabel}" />
+
+                    <Label x:Name="OppOrbPctLabel"
+                           Text="{Binding OppOrbPct}"
+                           Style="{StaticResource StatLabel}" />
+
+                    <Label x:Name="OppDrbPctLabel"
+                           Text="{Binding OppDrbPct}"
+                           Style="{StaticResource StatLabel}" />
+                           
+                </VerticalStackLayout>
+            </HorizontalStackLayout>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
