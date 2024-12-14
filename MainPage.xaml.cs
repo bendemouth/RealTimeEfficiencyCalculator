@@ -38,22 +38,22 @@ namespace EfficiencyCalculator
             // Initialze stat action dictionary
             statActions = new Dictionary<Button, Action>
             {
-                { TmFgTwoMadeBtn, () => viewModel.TmFgTwoMade++ },
+                { TmFgTwoMadeBtn, () => {viewModel.TmFgTwoMade++; viewModel.TmPts += 2; } },
                 { TmFgTwoMissBtn, () => viewModel.TmFgTwoMiss++ },
-                { TmFgThreeMadeBtn, () => viewModel.TmFgThreeMade++ },
+                { TmFgThreeMadeBtn, () => {viewModel.TmFgThreeMade++; viewModel.TmPts +=3; } },
                 { TmFgThreeMissBtn, () => viewModel.TmFgThreeMiss++ },
                 { TmOrbBtn, () => viewModel.TmOrb++ },
                 { TmDrbBtn, () => viewModel.TmDrb++ },
-                { TmFtMadeBtn, () => viewModel.TmFtMade++ },
+                { TmFtMadeBtn, () => {viewModel.TmFtMade++; viewModel.TmPts++; } },
                 { TmFtMissBtn, () => viewModel.TmFtMiss++ },
                 { TmTovBtn, () => viewModel.TmTov++ },
-                { OppFgTwoMadeBtn, () => viewModel.OppFgTwoMade++ },
+                { OppFgTwoMadeBtn, () => {viewModel.OppFgTwoMade++; viewModel.OppPts +=2; } },
                 { OppFgTwoMissBtn, () => viewModel.OppFgTwoMiss++ },
-                { OppFgThreeMadeBtn, () => viewModel.OppFgThreeMade++ },
+                { OppFgThreeMadeBtn, () => {viewModel.OppFgThreeMade++; viewModel.OppPts +=3; } },
                 { OppFgThreeMissBtn, () => viewModel.OppFgThreeMiss++ },
                 { OppOrbBtn, () => viewModel.OppOrb++ },
                 { OppDrbBtn, () => viewModel.OppDrb++ },
-                { OppFtMadeBtn, () => viewModel.OppFtMade++ },
+                { OppFtMadeBtn, () => {viewModel.OppFtMade++; viewModel.OppPts++; } },
                 { OppFtMissBtn, () => viewModel.OppFtMiss++ },
                 { OppTovBtn, () => viewModel.OppTov++ }
             };

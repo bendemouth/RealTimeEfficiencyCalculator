@@ -4,10 +4,11 @@
              xmlns:viewModels="clr-namespace:EfficiencyCalculator.ViewModels"
              x:Class="EfficiencyCalculator.MainPage">
     <ContentPage.Resources>
-        <Color x:Key="ButtonDisabledColorKey">#a7a9ac</Color>
-        <Color x:Key="ButtonEnabledColorKey">#cf202e</Color>
+        <Color x:Key="ButtonDisabledColorKey">#8c949b</Color>
+        <Color x:Key="ButtonEnabledColorKey">#bf2c36</Color>
         <Color x:Key="TextDisabledColorKey">#000000</Color>
         <Color x:Key="TextEnabledColorKey">White</Color>
+        <Color x:Key="BestFitBlue">#1b2434</Color>
 
         <Style x:Key="StatLabel" TargetType="Label">
             <Setter Property="FontSize" Value="18" />
@@ -24,21 +25,21 @@
             Padding="30,0"
             Spacing="25">
             <Image
-                Source="ucm_mule.png"
-                HeightRequest="185"
+                Source="bestfitlogo.png"
+                HeightRequest="200"
                 Aspect="AspectFit"
-                SemanticProperties.Description="Central Missouri Mule Logo" />
+                SemanticProperties.Description="Best Fit Sports Data Logo" />
 
             <Label
                 Text="Basketball Efficiency Calculator"
                 Style="{StaticResource Headline}"
-                TextColor="{StaticResource ButtonEnabledColorKey}"
+                TextColor="{StaticResource BestFitBlue}"
                 SemanticProperties.HeadingLevel="Level1" />
 
             <Label
                 Text="Enter Plays Below to Calculate Team Efficiency"
                 Style="{StaticResource SubHeadline}"
-                TextColor="{StaticResource ButtonEnabledColorKey}"
+                TextColor="{StaticResource BestFitBlue}"
                 SemanticProperties.HeadingLevel="Level2" />
 
             <HorizontalStackLayout  HorizontalOptions="Center">
@@ -173,7 +174,8 @@
 
                     <Entry x:Name="TmPtsEntry"
                            Margin="10"
-                           Text="{Binding TmPts, Mode=TwoWay}"/>
+                           Text="{Binding TmPts, Mode=TwoWay}"
+                           Keyboard="Numeric"/>
                     
                 </VerticalStackLayout>
 
@@ -187,7 +189,8 @@
 
                     <Entry x:Name="OppPtsEntry"
                            Margin="10"
-                           Text="{Binding OppPts, Mode=TwoWay}"/>
+                           Text="{Binding OppPts, Mode=TwoWay}"
+                           Keyboard="Numeric"/>
                     
                 </VerticalStackLayout>
             </HorizontalStackLayout>

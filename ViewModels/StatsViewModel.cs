@@ -32,6 +32,8 @@ namespace EfficiencyCalculator.ViewModels
                     OnPropertyChanged(nameof(TeamFieldGoalShooting));
                     OnPropertyChanged(nameof(TeamEfg));
                     OnPropertyChanged(nameof(TeamPoss));
+                    OnPropertyChanged(nameof(TeamOffEfficiency));
+                    OnPropertyChanged(nameof(OppDefEfficiency));
                 }
             }
         }
@@ -49,6 +51,8 @@ namespace EfficiencyCalculator.ViewModels
                     OnPropertyChanged(nameof(TeamFieldGoalShooting));
                     OnPropertyChanged(nameof(TeamEfg));
                     OnPropertyChanged(nameof(TeamPoss));
+                    OnPropertyChanged(nameof(TeamOffEfficiency));
+                    OnPropertyChanged(nameof(OppDefEfficiency));
                 }
             }
         }
@@ -67,6 +71,8 @@ namespace EfficiencyCalculator.ViewModels
                     OnPropertyChanged(nameof(TeamThreePointShooting));
                     OnPropertyChanged(nameof(TeamEfg));
                     OnPropertyChanged(nameof(TeamPoss));
+                    OnPropertyChanged(nameof(TeamOffEfficiency));
+                    OnPropertyChanged(nameof(OppDefEfficiency));
                 }
             }
         }
@@ -85,6 +91,8 @@ namespace EfficiencyCalculator.ViewModels
                     OnPropertyChanged(nameof(TeamThreePointShooting));
                     OnPropertyChanged(nameof(TeamEfg));
                     OnPropertyChanged(nameof(TeamPoss));
+                    OnPropertyChanged(nameof(TeamOffEfficiency));
+                    OnPropertyChanged(nameof(OppDefEfficiency));
                 }
             }
         }
@@ -101,6 +109,8 @@ namespace EfficiencyCalculator.ViewModels
                     OnPropertyChanged();
                     OnPropertyChanged(nameof(TeamPoss));
                     OnPropertyChanged(nameof(TeamOrbPct));
+                    OnPropertyChanged(nameof(TeamOffEfficiency));
+                    OnPropertyChanged(nameof(OppDefEfficiency));
                 }
             }
         }
@@ -131,6 +141,8 @@ namespace EfficiencyCalculator.ViewModels
                     tmFtMade = value;
                     OnPropertyChanged();
                     OnPropertyChanged(nameof(TeamPoss));
+                    OnPropertyChanged(nameof(TeamOffEfficiency));
+                    OnPropertyChanged(nameof(OppDefEfficiency));
                 }
             }
         }
@@ -146,6 +158,8 @@ namespace EfficiencyCalculator.ViewModels
                     tmFtMiss = value;
                     OnPropertyChanged();
                     OnPropertyChanged(nameof(TeamPoss));
+                    OnPropertyChanged(nameof(TeamOffEfficiency));
+                    OnPropertyChanged(nameof(OppDefEfficiency));
                 }
             }
         }
@@ -161,6 +175,8 @@ namespace EfficiencyCalculator.ViewModels
                     tmTov = value;
                     OnPropertyChanged();
                     OnPropertyChanged(nameof(TeamPoss));
+                    OnPropertyChanged(nameof(TeamOffEfficiency));
+                    OnPropertyChanged(nameof(OppDefEfficiency));
                 }
             }
         }
@@ -179,6 +195,8 @@ namespace EfficiencyCalculator.ViewModels
                     OnPropertyChanged(nameof(OppFieldGoalShooting));
                     OnPropertyChanged(nameof(OppEfg));
                     OnPropertyChanged(nameof(OppPoss));
+                    OnPropertyChanged(nameof(OppOffEfficiency));
+                    OnPropertyChanged(nameof(TeamDefEfficiency));
                 }
             }
         }
@@ -196,6 +214,8 @@ namespace EfficiencyCalculator.ViewModels
                     OnPropertyChanged(nameof (OppFieldGoalShooting));
                     OnPropertyChanged(nameof(OppEfg));
                     OnPropertyChanged(nameof(OppPoss));
+                    OnPropertyChanged(nameof(OppOffEfficiency));
+                    OnPropertyChanged(nameof(TeamDefEfficiency));
                 }
             }
         }
@@ -214,6 +234,8 @@ namespace EfficiencyCalculator.ViewModels
                     OnPropertyChanged(nameof(OppThreePointShooting));
                     OnPropertyChanged(nameof(OppEfg));
                     OnPropertyChanged(nameof(OppPoss));
+                    OnPropertyChanged(nameof(OppOffEfficiency));
+                    OnPropertyChanged(nameof(TeamDefEfficiency));
                 }
             }
         }
@@ -232,6 +254,8 @@ namespace EfficiencyCalculator.ViewModels
                     OnPropertyChanged(nameof(OppThreePointShooting));
                     OnPropertyChanged(nameof(OppEfg));
                     OnPropertyChanged(nameof(OppPoss));
+                    OnPropertyChanged(nameof(OppOffEfficiency));
+                    OnPropertyChanged(nameof(TeamDefEfficiency));
                 }
             }
         }
@@ -248,6 +272,8 @@ namespace EfficiencyCalculator.ViewModels
                     OnPropertyChanged();
                     OnPropertyChanged(nameof(OppPoss));
                     OnPropertyChanged(nameof(TeamDrbPct));
+                    OnPropertyChanged(nameof(OppOffEfficiency));
+                    OnPropertyChanged(nameof(TeamDefEfficiency));
                 }
             }
         }
@@ -278,6 +304,8 @@ namespace EfficiencyCalculator.ViewModels
                     oppFtMade = value;
                     OnPropertyChanged();
                     OnPropertyChanged(nameof(OppPoss));
+                    OnPropertyChanged(nameof(OppOffEfficiency));
+                    OnPropertyChanged(nameof(TeamDefEfficiency));
                 }
             }
         }
@@ -293,6 +321,8 @@ namespace EfficiencyCalculator.ViewModels
                     oppFtMiss = value;
                     OnPropertyChanged();
                     OnPropertyChanged(nameof(OppPoss));
+                    OnPropertyChanged(nameof(OppOffEfficiency));
+                    OnPropertyChanged(nameof(TeamDefEfficiency));
                 }
             }
         }
@@ -308,6 +338,8 @@ namespace EfficiencyCalculator.ViewModels
                     oppTov = value;
                     OnPropertyChanged();
                     OnPropertyChanged(nameof(OppPoss));
+                    OnPropertyChanged(nameof(OppOffEfficiency));
+                    OnPropertyChanged(nameof(TeamDefEfficiency));
                 }
             }
         }
@@ -457,9 +489,9 @@ namespace EfficiencyCalculator.ViewModels
                 int totalFreeThrowAttempts = tmFtMade + tmFtMiss;
                 double totalTmPoss = (double)(totalFieldGoalAttempts - TmOrb) + TmTov + (FT_COEFF * totalFreeThrowAttempts);
 
-                double tmOffEff = (double)TmPts / totalTmPoss;
+                double tmOffEff = totalTmPoss > 0 ? (double)TmPts / totalTmPoss : 0;
 
-                return $"Team Offensive Efficiency: {tmOffEff}";
+                return $"Team Offensive Efficiency: {tmOffEff:F2}";
             }
         }
 
@@ -471,9 +503,9 @@ namespace EfficiencyCalculator.ViewModels
                 int totalFreeThrowAttempts = oppFtMade + oppFtMiss;
                 double totalOppPoss = (double)(totalFieldGoalAttempts - OppOrb) + OppTov + (FT_COEFF * totalFreeThrowAttempts);
 
-                double tmDefEff = (double)OppPts / totalOppPoss;
+                double tmDefEff = totalOppPoss > 0 ? (double)OppPts / totalOppPoss : 0;
 
-                return $"Team Defensive Efficiency: {tmDefEff}";
+                return $"Team Defensive Efficiency: {tmDefEff:F2}";
             }
         }
 
@@ -485,9 +517,9 @@ namespace EfficiencyCalculator.ViewModels
                 int totalFreeThrowAttempts = oppFtMade + oppFtMiss;
                 double totalOppPoss = (double)(totalFieldGoalAttempts - OppOrb) + OppTov + (FT_COEFF * totalFreeThrowAttempts);
 
-                double oppOffEff = (double)OppPts / totalOppPoss;
+                double oppOffEff = totalOppPoss > 0 ? (double)OppPts / totalOppPoss : 0;
 
-                return $"Opponent Offensive Efficiency: {oppOffEff}";
+                return $"Opponent Offensive Efficiency: {oppOffEff:F2}";
             }
         }
 
@@ -499,9 +531,9 @@ namespace EfficiencyCalculator.ViewModels
                 int totalFreeThrowAttempts = tmFtMade + tmFtMiss;
                 double totalTmPoss = (double)(totalFieldGoalAttempts - TmOrb) + TmTov + (FT_COEFF * totalFreeThrowAttempts);
 
-                double oppDefEff = (double)TmPts / totalTmPoss;
+                double oppDefEff = totalTmPoss > 0 ? (double)TmPts / totalTmPoss : 0;
 
-                return $"Opponent Defensive Efficiency: {oppDefEff}";
+                return $"Opponent Defensive Efficiency: {oppDefEff:F2}";
             }
         }
 
@@ -509,7 +541,17 @@ namespace EfficiencyCalculator.ViewModels
         {
             get
             {
-                var orbPct = (double)TmOrb / (TmOrb + OppDrb);
+                double orbPct;
+
+                if (TmOrb > 0 || OppDrb > 0)
+                {
+                    orbPct = (double)TmOrb / (TmOrb + OppDrb);
+                }
+
+                else
+                {
+                    orbPct = 0;
+                }
 
                 return $"Team Offensive Rebounding Percent: {orbPct:F2}%";
             }
@@ -519,7 +561,16 @@ namespace EfficiencyCalculator.ViewModels
         {
             get
             {
-                var drbPct = (double)TmDrb / (TmDrb + OppOrb);
+                double drbPct;
+                if (TmDrb > 0 || OppOrb > 0)
+                {
+                    drbPct = (double)TmDrb / (TmDrb + OppOrb);
+                }
+
+                else
+                {
+                    drbPct = 0;
+                }
 
                 return $"Team Defensive Rebounding Percent: {drbPct:F2}%";
             }
@@ -529,7 +580,17 @@ namespace EfficiencyCalculator.ViewModels
         {
             get
             {
-                var orbPct = (double)OppOrb / (OppOrb + TmDrb);
+                double orbPct;
+
+                if (oppOrb > 0 || TmDrb > 0)
+                {
+                    orbPct = (double)OppOrb / (oppOrb + TmDrb);
+                }
+
+                else
+                {
+                    orbPct = 0;
+                }
 
                 return $"Opponent Offensive Rebounding Percent: {orbPct:F2}%";
             }
@@ -539,7 +600,17 @@ namespace EfficiencyCalculator.ViewModels
         {
             get
             {
-                var drbPct = (double)OppDrb / (OppDrb + TmOrb);
+                double drbPct;
+                if (oppDrb > 0 || TmOrb > 0)
+                {
+                    drbPct = (double)OppDrb / (OppDrb + TmOrb);
+                }
+
+                else
+                {
+                    drbPct = 0;
+                }
+                
 
                 return $"Opponent Defensive Rebounding Percent: {drbPct:F2}%";
             }
